@@ -14,9 +14,9 @@ class ShoppingCart
   end
 
   def total_number_of_products
-    current_prod = 0
-    @products.map do |product| current_prod += product.quantity end
-    current_prod
+    total_prod = 0
+    @products.map do |product| total_prod += product.quantity end
+    total_prod
   end
 
   def is_full?
@@ -38,6 +38,13 @@ class ShoppingCart
 
   def sorted_products_by_quantity
     @products.sort_by {|product| product.quantity}.reverse
+  end
+
+  def product_breakdown
+    categories = @products.map do |product| product.category end
+    breakdown = {}
+    categories.uniq.map do |category| breakdown[category] = products_by_category(category) end
+    breakdown
   end
 
 end

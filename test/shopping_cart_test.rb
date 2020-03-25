@@ -96,4 +96,19 @@ class ShoppingCartTest < Minitest::Test
 
       assert_equal [product4, product1, product2, product3], @cart.sorted_products_by_quantity
     end
+
+    def test_product_breakdown
+      product1 = Product.new(:paper, 'toilet paper', 3.70, '10')
+      product2 = Product.new(:meat, 'chicken', 4.50, '2')
+      product3 = Product.new(:paper, 'tissue paper', 1.25, '1')
+      product4 = Product.new(:produce, 'apples', 0.99, '20')
+
+      @cart.add_product(product1)
+      @cart.add_product(product2)
+      @cart.add_product(product3)
+      @cart.add_product(product4)
+
+      cart = {paper: [product1, product3], meat: [product2], produce: [product4]}
+      assert_equal cart, @cart.product_breakdown
+    end
 end
