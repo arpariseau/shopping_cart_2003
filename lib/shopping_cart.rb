@@ -1,3 +1,5 @@
+require './lib/product'
+
 class ShoppingCart
   attr_reader :name, :capacity, :products
 
@@ -9,6 +11,16 @@ class ShoppingCart
 
   def add_product(product)
     @products << product
+  end
+
+  def total_number_of_products
+    current_prod = 0
+    @products.map do |product| current_prod += product.quantity end
+    current_prod
+  end
+
+  def is_full?
+    total_number_of_products >= @capacity
   end
 
 end
