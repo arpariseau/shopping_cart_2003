@@ -31,4 +31,9 @@ class ShoppingCart
     details = {name: @name, capacity: @capacity}
   end
 
+  def percentage_occupied
+    pct = total_number_of_products.to_f / @capacity.to_f
+    (pct * 100).truncate(2)
+  end
+
 end
