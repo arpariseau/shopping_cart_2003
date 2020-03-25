@@ -27,4 +27,8 @@ class ShoppingCart
     @products.find_all do |product| product.category == category end
   end
 
+  def details
+    details = {name: @name, capacity: @capacity}
+  end
+
 end
