@@ -36,4 +36,8 @@ class ShoppingCart
     (pct * 100).truncate(2)
   end
 
+  def sorted_products_by_quantity
+    @products.sort_by {|product| product.quantity}.reverse
+  end
+
 end
